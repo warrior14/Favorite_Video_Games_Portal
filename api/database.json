@@ -1,7 +1,101 @@
 {
-  "pokemon": {
-    "charmander": {
-      "name": "charmander"
+  "videoGames": [
+    {
+      "id": 1, 
+      "name": "Call Of Duty",
+      "genre": 1
+    },
+    {
+      "id": 2,
+      "name": "Diablo",
+      "genre": 2
+    },
+    {
+      "id": 3,
+      "name": "Darksiders",
+      "genre": 2
+    }, 
+    {
+      "id": 4,
+      "name": "Fortnite",
+      "genre": 3
+    },
+    {
+      "id": 5,
+      "name": "Dead Space 2",
+      "genre": 3 
+    },
+    {
+      "id": 6,
+      "name": "Bioshock", 
+      "genre": 1
+    },
+    {
+      "id": 7,
+      "name": "Overwatch",
+      "genre": 1
+    },
+    {
+      "id": 8,
+      "name": "Halo: Combat Evolved",
+      "genre": 1
+    },
+    {
+      "id": 9,
+      "name": "Apex Legends",
+      "genre": 1
+    },
+    {
+      "id": 10,
+      "name": "Resident Evil 4",
+      "genre": 3
     }
-  }
+],
+
+"genres": [
+{
+  "id": 1,
+  "name": "First Person Shooter"
+},
+{
+  "id": 2,
+  "name": "Hack & Slash"
+},
+{
+  "id": 3,
+  "name": "Third Person Shooter"
 }
+],
+
+"Users": [
+  {
+    "id": 1,
+    "userName": "Kazathur",
+    "firstName": "Gabriel",
+    "lastName": "Madrazo",
+    "age": 28,
+    "dob": "08/21/1992",
+    "email": "gabmin21@hotmail.com",
+    "password": "honeybooboo"
+  },
+  {
+    "id": 2,
+    "userName": "Angel_21",
+    "firstName": "Luz",
+    "lastName": "Madrazo",
+    "age": 27,
+    "dob": "03/21/1993",
+    "email": "luzm321@yahoo.com",
+    "password": "okseeyou"
+  },
+  {
+    "id": 3,
+    "userName": "Ironaddicts14",
+    "firstName": "Luke",
+    "lastName": "Madrazo",
+    "age": 25,
+    "dob": "10/14/1995",
+    "email": "ironaddicts14@gmail.com",
+    "password": "queondacuz"
+  }
+],
