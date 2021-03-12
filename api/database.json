@@ -67,35 +67,37 @@
 }
 ],
 
-"Users": [
-  {
-    "id": 1,
-    "userName": "Kazathur",
-    "firstName": "Gabriel",
-    "lastName": "Madrazo",
-    "age": 28,
-    "dob": "08/21/1992",
-    "email": "gabmin21@hotmail.com",
-    "password": "honeybooboo"
-  },
-  {
-    "id": 2,
-    "userName": "Angel_21",
-    "firstName": "Luz",
-    "lastName": "Madrazo",
-    "age": 27,
-    "dob": "03/21/1993",
-    "email": "luzm321@yahoo.com",
-    "password": "okseeyou"
-  },
-  {
-    "id": 3,
-    "userName": "Ironaddicts14",
-    "firstName": "Luke",
-    "lastName": "Madrazo",
-    "age": 25,
-    "dob": "10/14/1995",
-    "email": "ironaddicts14@gmail.com",
-    "password": "queondacuz"
-  }
-],
+"users": [
+    {
+      "id": 1,
+      "userName": "Kazathur",
+      "firstName": "Gabriel",
+      "lastName": "Madrazo",
+      "age": 28,
+      "dob": "08/21/1992",
+      "email": "gabmin21@hotmail.com",
+      "password": "honeybooboo"
+    },
+    {
+      "id": 2,
+      "userName": "Angel_21",
+      "firstName": "Luz",
+      "lastName": "Madrazo",
+      "age": 27,
+      "dob": "03/21/1993",
+      "email": "luzm321@yahoo.com",
+      "password": "okseeyou"
+    },
+    {
+      "id": 3,
+      "userName": "Ironaddicts14",
+      "firstName": "Luke",
+      "lastName": "Madrazo",
+      "age": 25,
+      "dob": "10/14/1995",
+      "email": "ironaddicts14@gmail.com",
+      "password": "queondacuz"
+    }
+  ]
+}
+
