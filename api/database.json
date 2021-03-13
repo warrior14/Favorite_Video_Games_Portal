@@ -1,7 +1,7 @@
 {
   "videoGames": [
     {
-      "id": 1, 
+      "id": 1,
       "name": "Call Of Duty",
       "genre": 1
     },
@@ -14,7 +14,7 @@
       "id": 3,
       "name": "Darksiders",
       "genre": 2
-    }, 
+    },
     {
       "id": 4,
       "name": "Fortnite",
@@ -23,11 +23,11 @@
     {
       "id": 5,
       "name": "Dead Space 2",
-      "genre": 3 
+      "genre": 3
     },
     {
       "id": 6,
-      "name": "Bioshock", 
+      "name": "Bioshock",
       "genre": 1
     },
     {
@@ -49,25 +49,28 @@
       "id": 10,
       "name": "Resident Evil 4",
       "genre": 3
+    },
+    {
+      "name": "GTA",
+      "genre": "3",
+      "id": 11
     }
-],
-
-"genres": [
-{
-  "id": 1,
-  "name": "First Person Shooter"
-},
-{
-  "id": 2,
-  "name": "Hack & Slash"
-},
-{
-  "id": 3,
-  "name": "Third Person Shooter"
-}
-],
-
-"users": [
+  ],
+  "genres": [
+    {
+      "id": 1,
+      "name": "First Person Shooter"
+    },
+    {
+      "id": 2,
+      "name": "Hack & Slash"
+    },
+    {
+      "id": 3,
+      "name": "Third Person Shooter"
+    }
+  ],
+  "users": [
     {
       "id": 1,
       "userName": "Kazathur",
@@ -100,4 +103,3 @@
     }
   ]
 }
-

@@ -23,5 +23,19 @@ export default class ApiManager {
             console.error(e);
         };
     };
+    addVideoGames(newVideoGame) {
+        try {
+            return fetch("http://localhost:8088/videoGames", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(newVideoGame)
+            }).then(response => response.json());
+        } catch (e) {
+            console.error(e);
+        };
+    };
 };
+
 
