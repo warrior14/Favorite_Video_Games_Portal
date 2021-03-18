@@ -17,13 +17,16 @@
 
 import ApiManager from "./apiManager.js";
 import ElementFactory from "./elementFactory.js";
+import LogInManager from "./loginManager.js";
 
 let apiManager = new ApiManager();
 let elementFactory = new ElementFactory();
 let videoGamesDataPromiseArray = new Array();
 let usersDataPromiseArray = new Array();
 let genresDataPromiseArray = new Array();
+let logInManager = new LogInManager();
 
+// Home Page
 let parentElementName = document.getElementById('play');
 let addVideoGameButton = document.getElementById('addVideoGame');
 let inputVideoGameName = document.getElementById('name');
@@ -32,15 +35,29 @@ let inputVideoGameId = document.getElementById('videoGameIdInput');
 let deleteVideoGameButton = document.getElementById('deleteVideoGame');
 let editVideoGameButton = document.getElementById('editVideoGame');
 let patchVideoGameButton = document.getElementById('patchVideoGame');
-
 let newVideoGame = {};
 let videoGameId;
+
+
+
+// Log In Page
+let userNameInput = document.getElementById('username');
+let passwordInput = document.getElementById('password');
+let logInButton = document.getElementById('logInButton');
+let username;
+let password;
+
 
 let getDataFromApis = () => {
     videoGamesDataPromiseArray.push(apiManager.getVideoGames());
     usersDataPromiseArray.push(apiManager.getUsers());
     genresDataPromiseArray.push(apiManager.getGenres());
 };
+
+let gettingDataFromApis = new Promise((resolve, reject) => {
+    resolve(getDataFromApis());
+});
+
 
 let addEventListeners = () => {
     inputVideoGameName.addEventListener('change', updateValue);
@@ -50,16 +67,26 @@ let addEventListeners = () => {
     deleteVideoGameButton.addEventListener('click', clickOnDeleteVideoGame);
     editVideoGameButton.addEventListener('click', clickOnEditVideoGame);
     patchVideoGameButton.addEventListener('click', clickOnPatchVideoGame);
+    userNameInput.addEventListener('change', updateValue);
+    passwordInput.addEventListener('change', updateValue);
+    logInButton.addEventListener('click', () => { 
+        logInManager.authenticate(usersDataPromiseArray, username, password);
+    });
 };
 
 let updateValue = (event) => {
     if(event.target.id === 'videoGameIdInput') {
         videoGameId = event.target.value;
-    } else {
+    } else if (event.target.id === 'name' || event.target.id === 'genre') {
         newVideoGame[event.target.id] = event.target.value; 
-        console.log('videoGame object', newVideoGame);
-    };
-};
+    } else if (event.target.id === 'username') {
+        username = event.target.value;
+        console.log(username);
+    } else {
+        password = event.target.value;
+        console.log('password', password);
+    }
+}
 let clickOnAddVideoGame = () => {
     apiManager.addVideoGames(newVideoGame).then(() => {
         location.reload();
@@ -81,13 +108,15 @@ let clickOnDeleteVideoGame = () => {
 
 let clickOnPatchVideoGame = () => {
     apiManager.patchVideoGame(videoGameId, newVideoGame).then(() => {
-       location.reload(); 
+        location.reload(); 
     });
 };
 
 let initialize = new Promise((resolve, reject) => {
-    addEventListeners();
-    resolve(getDataFromApis());
+    gettingDataFromApis.then(() => {
+        logInManager.checkIfAuthenticated(usersDataPromiseArray);
+        addEventListeners();
+    });
 });
 
 
