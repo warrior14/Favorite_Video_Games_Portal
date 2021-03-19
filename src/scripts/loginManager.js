@@ -1,4 +1,4 @@
-let logInPageDiv = document.getElementById('loginPage');
+let logInPageDiv = document.getElementById('logInPage');
 let homePageDiv = document.getElementById('homePage');
 
 export default class LogInManager {
@@ -6,8 +6,8 @@ export default class LogInManager {
     
     checkIfAuthenticated(usersDataPromiseArray) {
         usersDataPromiseArray[0].then(usersDataArray => {
-            for (let i = 0; i < userDataArray.length; i++) {
-                if (sessionStorage.getItem('username') === userDataArray[i].username) {
+            for (let i = 0; i < usersDataArray.length; i++) {
+                if (sessionStorage.getItem('username') === usersDataArray[i].username) {
                     this.redirectToHomePage();
                     break;
                 } else {
@@ -22,15 +22,15 @@ export default class LogInManager {
     };
 
     authenticate(usersDataPromiseArray, username, password) {
-        usersDataPromise[0].then(userDataArray => {
-            for (let i= 0; i < userDataArray.length; i++ ) {
-                if(username === userDataArray[i].username && password === userDataArray[i].password) {
+        usersDataPromiseArray[0].then(usersDataArray => {
+            for (let i= 0; i < usersDataArray.length; i++ ) {
+                if(username === usersDataArray[i].username && password === usersDataArray[i].password) {
                     this.redirectToHomePage();
-                    sessionStorage.setItem('username', userDataArray[i].usernmae);
-                    sessionStorage.setItem('password', userDataArray[i].password);
+                    sessionStorage.setItem('username', usersDataArray[i].username);
+                    sessionStorage.setItem('password', usersDataArray[i].password);
                     break;
                 } else {
-                    console.log(usermame, userDataArray[i].username, passeword, userDataArray[i].password);
+                    console.log(username, usersDataArray[i].username, password, usersDataArray[i].password);
                     alert('The combination of user name and password you entered were not correct!');
                     break;
 
@@ -46,14 +46,11 @@ export default class LogInManager {
         logInPageDiv.setAttribute('hidden', '')
         homePageDiv.removeAttribute('hidden');
     };
+
+    clickOnLogOut() {
+        logInPageDiv.removeAttribute('hidden');
+        homePageDiv.setAttribute('hidden', '');
+        sessionStorage.removeItem('username');
+        sessionStorage.removeItem('password');
+    };
 };
-
-
-
-
-
-
-
-
-}
-    

@@ -15,26 +15,27 @@
 //     console.log(genresData);
 // });
 
-import ApiManager from "./apiManager.js";
-import ElementFactory from "./elementFactory.js";
-import LogInManager from "./loginManager.js";
+import ApiManager from './apiManager.js';
+import ElementFactory from './elementFactory.js';
+import LogInManager from './loginManager.js';
 
 let apiManager = new ApiManager();
 let elementFactory = new ElementFactory();
+let logInManager = new LogInManager();
 let videoGamesDataPromiseArray = new Array();
 let usersDataPromiseArray = new Array();
 let genresDataPromiseArray = new Array();
-let logInManager = new LogInManager();
 
 // Home Page
 let parentElementName = document.getElementById('play');
-let addVideoGameButton = document.getElementById('addVideoGame');
 let inputVideoGameName = document.getElementById('name');
 let inputVideoGameGenre = document.getElementById('genre');
 let inputVideoGameId = document.getElementById('videoGameIdInput');
 let deleteVideoGameButton = document.getElementById('deleteVideoGame');
 let editVideoGameButton = document.getElementById('editVideoGame');
 let patchVideoGameButton = document.getElementById('patchVideoGame');
+let addVideoGameButton = document.getElementById('addVideoGame');
+let logOutButton = document.getElementById('logOutButton');
 let newVideoGame = {};
 let videoGameId;
 
@@ -54,7 +55,7 @@ let getDataFromApis = () => {
     genresDataPromiseArray.push(apiManager.getGenres());
 };
 
-let gettingDataFromApis = new Promise((resolve, reject) => {
+let gettingDataFromApis = new Promise((resolve) => {
     resolve(getDataFromApis());
 });
 
@@ -69,6 +70,7 @@ let addEventListeners = () => {
     patchVideoGameButton.addEventListener('click', clickOnPatchVideoGame);
     userNameInput.addEventListener('change', updateValue);
     passwordInput.addEventListener('change', updateValue);
+    logOutButton.addEventListener('click', logInManager.clickOnLogOut);
     logInButton.addEventListener('click', () => { 
         logInManager.authenticate(usersDataPromiseArray, username, password);
     });
@@ -79,14 +81,14 @@ let updateValue = (event) => {
         videoGameId = event.target.value;
     } else if (event.target.id === 'name' || event.target.id === 'genre') {
         newVideoGame[event.target.id] = event.target.value; 
-    } else if (event.target.id === 'username') {
+    } else if (event.target.value === 'username') {
         username = event.target.value;
         console.log(username);
     } else {
         password = event.target.value;
         console.log('password', password);
-    }
-}
+    };
+};
 let clickOnAddVideoGame = () => {
     apiManager.addVideoGames(newVideoGame).then(() => {
         location.reload();
@@ -112,45 +114,40 @@ let clickOnPatchVideoGame = () => {
     });
 };
 
-let initialize = new Promise((resolve, reject) => {
+let initialize = new Promise((resolve) => {
     gettingDataFromApis.then(() => {
         logInManager.checkIfAuthenticated(usersDataPromiseArray);
-        addEventListeners();
+        resolve(addEventListeners());
     });
 });
 
 
 initialize.then(() => {
-    console.log("Video Games Data", videoGamesDataPromiseArray[0]);
-    console.log("Users Data", usersDataPromiseArray[0]);
-    console.log("Genres Data", genresDataPromiseArray[0]);
+    console.log('Video Games Data', videoGamesDataPromiseArray[0]);
+    console.log('Users Data', usersDataPromiseArray[0]);
+    console.log('Genres Data', genresDataPromiseArray[0]);
 
     videoGamesDataPromiseArray[0].then(videoGamesData => {
-        console.log("Video Games Data", videoGamesData);
+        console.log('Video Games Data', videoGamesData);
         videoGamesData.forEach(videoGame => {
             elementFactory.createNewElement('p', 'id', 'videoGame', videoGame.name, parentElementName);
         });
     });
 
     usersDataPromiseArray[0].then(usersData => {
-        console.log("Users Data", usersData);
+        console.log('Users Data', usersData);
         usersData.forEach(user => {
             elementFactory.createNewElement('p', 'id', 'users', user.userName, parentElementName);
         });
     });
 
     genresDataPromiseArray[0].then(genresData => {
-        console.log("Genres Data", genresData);
+        console.log('Genres Data', genresData);
         genresData.forEach(genre => {
             console.log('parentElement', parentElementName);
             elementFactory.createNewElement('p', 'id', 'genres', genre.name, parentElementName);
         }); 
     });
-
-let newVideoGame = {
-    "name": "Titan Quest",
-    "genre": 2,
-    };
 
     // apiManager.addVideoGames(newVideoGame);
 });

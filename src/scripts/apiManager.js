@@ -18,17 +18,17 @@ export default class ApiManager {
     };
     getGenres() {
         try {
-            return fetch("http://localhost:8088/genres").then(response => response.json());
+            return fetch('http://localhost:8088/genres').then(response => response.json());
         } catch (e) {
             console.error(e);
         };
     };
     addVideoGames(newVideoGame) {
         try {
-            return fetch("http://localhost:8088/videoGames/", {
-                method: "POST",
+            return fetch('http://localhost:8088/videoGames/', {
+                method: 'POST',
                 headers: {
-                    "Content-Type": "application/json" 
+                    'Content-Type': 'application/json' 
                 },
                 body: JSON.stringify(newVideoGame)
             }).then(response => response.json());
@@ -40,9 +40,9 @@ export default class ApiManager {
     deleteVideoGames(videoGameId) {
         try {
             return fetch(`http://localhost:8088/videGames/${videoGameId}`, {
-                method: "DELETE",
+                method: 'DELETE',
                 headers: {
-                    "Content-Type": "application/json"
+                    'Content-Type': 'application/json'
                 },
             }).then(response => response.json());
         } catch (e) {
@@ -55,7 +55,7 @@ export default class ApiManager {
     editVideoGame(videoGameId, data) {
     try {
         return fetch(`http://localhost:8088/videoGames/${videoGameId}`, {
-        method: "PUT",
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
